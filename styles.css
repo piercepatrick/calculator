@@ -1,1 +1,21 @@
-css
+#container {
+    background: gray;
+    height: 60vmin;
+    width: 60vmin;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.topButtons {
+    font-size: 1em;
+    width: 5vw;
+    height: 5vw;
+}
+
+.buttons {
+    font-size: 2em;
+    width: 5vw;
+    height: 5vw;
+}
