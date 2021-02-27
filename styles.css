@@ -1,5 +1,5 @@
 #container {
-    background: gray;
+    background: black;
     height: 60vmin;
     width: 45vmin;
     margin: auto;
@@ -7,6 +7,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
 }
 
 .break {
@@ -15,15 +16,34 @@
   }
 
 #display {
-    background: orange;
+    background: white;
+    margin-top: 5%;
+    width: 90%;
+    text-align: right;
+}
+
+#display h3 {
+    margin: 0;
+    padding-right: 10%;
+    font-size: 300%;
 }
 
 #clearDeleteContainer {
     background: pink;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.topButtons {
+    width: 9vw;
+    height: 3vw;
+    
 }
 
 .buttons {
-    background: blue;
+    background: white;
     font-size: 2em;
     width: 5vw;
     height: 5vw;
