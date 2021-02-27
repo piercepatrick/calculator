@@ -29,7 +29,6 @@
 }
 
 #clearDeleteContainer {
-    background: pink;
     width: 90%;
     display: flex;
     justify-content: center;
@@ -37,12 +36,12 @@
 }
 
 .topButtons {
-    width: 9vw;
+    background: white;
+    width: 10vw;
     height: 3vw;
-    
 }
 
-.buttons {
+.numbers, .operators {
     background: white;
     font-size: 2em;
     width: 5vw;
