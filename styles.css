@@ -22,6 +22,10 @@
     text-align: right;
 }
 
+#displayText:empty {
+    min-height: 3vw;
+}
+
 #display h3 {
     margin: 0;
     padding-right: 10%;
@@ -41,7 +45,7 @@
     height: 3vw;
 }
 
-.numbers, .operators {
+.numbers, .operators, .equals {
     background: white;
     font-size: 2em;
     width: 5vw;
