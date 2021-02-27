@@ -1,20 +1,29 @@
 #container {
     background: gray;
     height: 60vmin;
-    width: 60vmin;
+    width: 45vmin;
     margin: auto;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
-.topButtons {
-    font-size: 1em;
-    width: 5vw;
-    height: 5vw;
+.break {
+    flex-basis: 100%;
+    height: 0;
+  }
+
+#display {
+    background: orange;
+}
+
+#clearDeleteContainer {
+    background: pink;
 }
 
 .buttons {
+    background: blue;
     font-size: 2em;
     width: 5vw;
     height: 5vw;
