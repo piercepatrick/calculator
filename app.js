@@ -92,6 +92,13 @@ clear.addEventListener('click', () => {
     displayText.innerHTML = '';
 });
 
+const deleteButton = document.querySelector('#delete');
+
+   
+deleteButton.addEventListener('click', () => {
+    displayText.innerHTML = displayText.innerHTML.substring(0, displayText.innerHTML.length - 1);
+});
+
 // next up:
-// line 72, displayValue is not parsing correctly
+// delete button bug
 // 
