@@ -2,8 +2,8 @@ function operate(num1, num2, operator)
 {
     if (operator == '+') return num1 + num2;
     if (operator == '-') return num1 - num2;
-    if (operator == '*') return num1 * num2;
-    if (operator == '/') return num1 / num2;
+    if (operator == 'x') return num1 * num2;
+    if (operator == '÷') return num1 / num2;
 }
 
 let firstValue = '';
@@ -30,12 +30,14 @@ numbers.forEach((number) => {
             displayText.innerHTML = displayText.innerHTML+number.innerHTML;
             displayValue = displayText.innerHTML;
         }
-        else if (operatorClicked == true && displayValueChars == 0)
+        else if (displayValueChars == 0)
         {
+
             displayValueChars++;
             displayText.innerHTML = '';
             displayText.innerHTML = number.innerHTML;
-            displayValue = displayValue.innerHTML;
+            displayValue = displayText.innerHTML;
+            
         }
         else 
         {
@@ -56,9 +58,9 @@ operators.forEach((operator) => {
       operatorClicked = true;
       firstValue = displayText.innerHTML;
       operatorValue = operator.innerHTML;
+      console.log(operatorValue)
     });
   });
-
 
 
 const equals = document.querySelector('.equals');
@@ -68,11 +70,28 @@ equals.addEventListener('click', () => {
     if (firstValue != '' && displayValue != '')
     {
         firstValue = parseFloat(firstValue);
-        displayValue = parseFloat(displayValue);
+        displayValue = parseFloat(displayValue,10);
         displayText.innerHTML = operate(firstValue, displayValue, operatorValue);
+    }
+    else 
+    {
+        alert('Enter A Valid Calculation')
+        document.getElementById("clear").click();
     }
 });
 
-// next up: make strings ints - check
-// first value is always displayed, display second value after it is clicked and then display total after equal sign is pushed.
-// when writing clear listener, make operator clicked false. reset displayvaluechars to 0
+const clear = document.querySelector('#clear');
+
+   
+clear.addEventListener('click', () => {
+    firstValue = '';
+    operatorValue = '';
+    displayValue = '';
+    operatorClicked = false;
+    displayValueChars = 0;
+    displayText.innerHTML = '';
+});
+
+// next up:
+// line 72, displayValue is not parsing correctly
+// 
