@@ -22,10 +22,6 @@
     text-align: right;
 }
 
-#displayText:empty {
-    min-height: 3vw;
-}
-
 #display h3 {
     margin: 0;
     padding-right: 10%;
@@ -41,13 +37,13 @@
 
 .topButtons {
     background: white;
-    width: 10vw;
-    height: 3vw;
+    width: 20vmin;
+    height: 5vmin;
 }
 
 .numbers, .operators, .equals {
     background: white;
     font-size: 2em;
-    width: 5vw;
-    height: 5vw;
+    width: 10vmin;
+    height: 10vmin;
 }
