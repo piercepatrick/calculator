@@ -1,23 +1,23 @@
-function operate(num1, num2, operator)
-{
-    if (operator == '+') return num1 + num2;
-    if (operator == '-') return num1 - num2;
-    if (operator == 'x') return num1 * num2;
-    if (operator == '÷') return num1 / num2;
-}
+const numbers = document.querySelectorAll('.numbers');
+const displayText = document.querySelector("h3");
+const operators = document.querySelectorAll('.operators');
+const equals = document.querySelector('.equals');
+const clear = document.querySelector('#clear');
+const deleteButton = document.querySelector('#delete');
 
 let firstValue = '';
 let operatorValue;
-let displayValue = '';
+let secondValue = '';
 let operatorClicked = false;
 let displayValueChars = 0;
-// buttons is a node list. It looks and acts much like an array.
-const numbers = document.querySelectorAll('.numbers');
-const displayText = document.querySelector("h3");
+let shouldResetScreen = false;
 
-// we use the .forEach method to iterate through each button
+equals.addEventListener('click', evaluate);
+clear.addEventListener('click', clearScreen);
+deleteButton.addEventListener('click', deleteNumber);
+
+
 numbers.forEach((number) => {
-  // and for each one we add a 'click' listener
   number.addEventListener('click', () => {
     if (displayText.innerHTML.length >= 9)
     {
@@ -28,7 +28,7 @@ numbers.forEach((number) => {
         if (operatorClicked == false)
         {
             displayText.innerHTML = displayText.innerHTML+number.innerHTML;
-            displayValue = displayText.innerHTML;
+            secondValue = displayText.innerHTML;
         }
         else if (displayValueChars == 0)
         {
@@ -36,13 +36,13 @@ numbers.forEach((number) => {
             displayValueChars++;
             displayText.innerHTML = '';
             displayText.innerHTML = number.innerHTML;
-            displayValue = displayText.innerHTML;
+            secondValue = displayText.innerHTML;
             
         }
         else 
         {
             displayText.innerHTML = displayText.innerHTML+number.innerHTML;
-            displayValue = displayText.innerHTML;
+            secondValue = displayText.innerHTML;
         }
     }
   });
@@ -50,10 +50,9 @@ numbers.forEach((number) => {
 
 
 
-const operators = document.querySelectorAll('.operators');
+
 
 operators.forEach((operator) => {
-    // and for each one we add a 'click' listener
     operator.addEventListener('click', () => {
       operatorClicked = true;
       firstValue = displayText.innerHTML;
@@ -62,42 +61,48 @@ operators.forEach((operator) => {
   });
 
 
-const equals = document.querySelector('.equals');
 
    
-equals.addEventListener('click', () => {
-    if (firstValue != '' && displayValue != '')
+function evaluate() {
+    if (firstValue != '' && secondValue != '')
     {
         firstValue = parseFloat(firstValue);
-        displayValue = parseFloat(displayValue,10);
-        displayText.innerHTML = operate(firstValue, displayValue, operatorValue);
+        secondValue = parseFloat(secondValue,10);
+        displayText.innerHTML = operate(firstValue, secondValue, operatorValue);
     }
     else 
     {
         alert('Enter A Valid Calculation')
         document.getElementById("clear").click();
     }
-});
-
-const clear = document.querySelector('#clear');
+}
 
    
-clear.addEventListener('click', () => {
+function clearScreen() {
     firstValue = '';
     operatorValue = '';
-    displayValue = '';
+    secondValue = '';
     operatorClicked = false;
     displayValueChars = 0;
     displayText.innerHTML = '';
-});
+}
 
-const deleteButton = document.querySelector('#delete');
+
 
    
-deleteButton.addEventListener('click', () => {
+function deleteNumber() {
     displayText.innerHTML = displayText.innerHTML.substring(0, displayText.innerHTML.length - 1);
-    displayValue = displayText.innerHTML;
-});
+    secondValue = displayText.innerHTML;
+};
+
+
+function operate(num1, num2, operator)
+{
+    if (operator == '+') return num1 + num2;
+    if (operator == '-') return num1 - num2;
+    if (operator == 'x') return num1 * num2;
+    if (operator == '÷') return num1 / num2;
+}
 
 // trying to fix multiple operators being clicked and first value not reseting.
 // 
