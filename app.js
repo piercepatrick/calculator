@@ -6,10 +6,8 @@ const clear = document.querySelector('#clear');
 const deleteButton = document.querySelector('#delete');
 
 let firstValue = '';
-let operatorValue;
+let operatorValue = null;
 let secondValue = '';
-let operatorClicked = false;
-let displayValueChars = 0;
 let shouldResetScreen = false;
 
 equals.addEventListener('click', evaluate);
@@ -19,90 +17,77 @@ deleteButton.addEventListener('click', deleteNumber);
 
 numbers.forEach((number) => {
   number.addEventListener('click', () => {
-    if (displayText.innerHTML.length >= 9)
-    {
-        alert('No more than 9 characters!');   
-    } 
-    else
-    {
-        if (operatorClicked == false)
-        {
-            displayText.innerHTML = displayText.innerHTML+number.innerHTML;
-            secondValue = displayText.innerHTML;
-        }
-        else if (displayValueChars == 0)
-        {
-
-            displayValueChars++;
-            displayText.innerHTML = '';
-            displayText.innerHTML = number.innerHTML;
-            secondValue = displayText.innerHTML;
-            
-        }
-        else 
-        {
-            displayText.innerHTML = displayText.innerHTML+number.innerHTML;
-            secondValue = displayText.innerHTML;
-        }
-    }
+        appendNumber(number.textContent) 
   });
 });
 
 
-
-
-
 operators.forEach((operator) => {
     operator.addEventListener('click', () => {
-      operatorClicked = true;
-      firstValue = displayText.innerHTML;
-      operatorValue = operator.innerHTML;
+        setOperation(operator.textContent);
     });
   });
 
+function appendNumber(number) {
+    if (displayText.textContent === "0" || shouldResetScreen) resetScreen();
+    displayText.textContent += number;
+  }
 
+
+function resetScreen() {
+    displayText.textContent = "";
+    shouldResetScreen = false;
+}
 
    
 function evaluate() {
-    if (firstValue != '' && secondValue != '')
-    {
-        firstValue = parseFloat(firstValue);
-        secondValue = parseFloat(secondValue,10);
-        displayText.innerHTML = operate(firstValue, secondValue, operatorValue);
+    if (operatorValue === null || shouldResetScreen) return;
+    if (operatorValue === "÷" && displayText.textContent === "0") {
+      alert("You can't divide by 0!");
+      clearScreen();
+      return;
     }
-    else 
-    {
-        alert('Enter A Valid Calculation')
-        document.getElementById("clear").click();
-    }
-}
+    secondValue = displayText.textContent;
+    displayText.textContent = roundResult(
+      operate(firstValue, secondValue, operatorValue)
+    );
+    operatorValue = null;
+  }
 
-   
+
+
+function roundResult(number) {
+    return Math.round(number * 1000) / 1000;
+}  
+
 function clearScreen() {
-    firstValue = '';
-    operatorValue = '';
-    secondValue = '';
-    operatorClicked = false;
-    displayValueChars = 0;
-    displayText.innerHTML = '';
+    displayText.textContent = "0";
+    firstValue = "";
+    secondValue = "";
+    operatorValue = null;
 }
 
 
+function setOperation(operator) {
+    if (operatorValue !== null) evaluate();
+    firstValue = displayText.textContent;
+    operatorValue = operator;
+    shouldResetScreen = true;
+  }
 
    
 function deleteNumber() {
-    displayText.innerHTML = displayText.innerHTML.substring(0, displayText.innerHTML.length - 1);
-    secondValue = displayText.innerHTML;
+    displayText.textContent = displayText.textContent.toString().slice(0, -1);
 };
 
 
 function operate(num1, num2, operator)
 {
+    num1 = parseFloat(num1);
+    num2 = parseFloat(num2);
     if (operator == '+') return num1 + num2;
     if (operator == '-') return num1 - num2;
     if (operator == 'x') return num1 * num2;
     if (operator == '÷') return num1 / num2;
 }
 
-// trying to fix multiple operators being clicked and first value not reseting.
-// 
