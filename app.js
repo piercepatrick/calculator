@@ -58,7 +58,6 @@ operators.forEach((operator) => {
       operatorClicked = true;
       firstValue = displayText.innerHTML;
       operatorValue = operator.innerHTML;
-      console.log(operatorValue)
     });
   });
 
@@ -97,8 +96,8 @@ const deleteButton = document.querySelector('#delete');
    
 deleteButton.addEventListener('click', () => {
     displayText.innerHTML = displayText.innerHTML.substring(0, displayText.innerHTML.length - 1);
+    displayValue = displayText.innerHTML;
 });
 
-// next up:
-// delete button bug
+// trying to fix multiple operators being clicked and first value not reseting.
 // 
