@@ -1,5 +1,6 @@
 #container {
-    background: black;
+    background: gray;
+    border: 7px solid black;
     height: 60vmin;
     width: 45vmin;
     margin: auto;
@@ -20,6 +21,7 @@
     margin-top: 5%;
     width: 90%;
     text-align: right;
+    border: 5px solid black;
 }
 
 #display h3 {
@@ -39,6 +41,9 @@
     background: white;
     width: 20vmin;
     height: 5vmin;
+    border: 5px solid black;
+    font-weight: bold;
+    font-size: 1em;
 }
 
 .numbers, .operators, .equals {
@@ -46,4 +51,13 @@
     font-size: 2em;
     width: 10vmin;
     height: 10vmin;
+}
+
+.numbers {
+    background: rgba(40, 117, 122, 0.685);
+    color: white;
+}
+
+#decimal, .operators, .equals {
+    background: rgba(255, 166, 0, 0.897) !important;
 }
